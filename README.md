@@ -2,12 +2,13 @@
 Pricing d'un Autocall sur CAC 40 par simulation Monte-Carlo (Python)
 
 
+# Code Python
 
 
 import yfinance as yf
 import pandas as pd
 
-#Télécharger les données automatiquement de Yahoo Finance du CAC 40#
+# Télécharger les données automatiquement de Yahoo Finance du CAC 40#
 
 ticker = "^FCHI"
 data = yf.download(ticker, "2022-01-01", "2025-01-01")
@@ -16,7 +17,7 @@ data = yf.download(ticker, "2022-01-01", "2025-01-01")
 print(data.head())
 print(data.tail())
 
-#Extraire le Close
+# Extraire le Close
 
 close  = data["Close"]["^FCHI"]
 
@@ -104,8 +105,7 @@ print(f"% de rappel total    : {(payoffs > nominal).mean():.2%}")
 print(f"% de perte en capital: {(payoffs < nominal).mean():.2%}")
 
 # Actualisation : prix = E[payoff] × e^(-rT_moyen)
-# Mais attention : chaque trajectoire est rappelée à une date différente
-# Il faut actualiser chaque payoff à SA date de rappel
+
 
 prix_actualises = np.zeros(M)
 

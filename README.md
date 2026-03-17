@@ -81,20 +81,20 @@ payoffs = np.zeros(M)  # payoff pour chaque simulation
 for i in range(M):
     rappele = False
 
-    for j, t in enumerate([1, 2, 3]):  # an 1, 2, 3
+for j, t in enumerate([1, 2, 3]):  # an 1, 2, 3
         if niveaux[i, j] >= barriere_rappel:
             # Rappel automatique : capital + coupon × années écoulées
             payoffs[i] = nominal * (1 + coupon * t)
             rappele = True
             break  # on sort : le produit est terminé
 
-    if not rappele:
+if not rappele:
         # À maturité : pas de rappel
         if niveaux[i, -1] >= barriere_capital:
             # Au-dessus de la barrière de protection → capital remboursé
             payoffs[i] = nominal
-        else:
-            # En dessous → perte proportionnelle à la baisse
+else:
+        # En dessous → perte proportionnelle à la baisse
             payoffs[i] = nominal * niveaux[i, -1]
 
 # Statistiques
